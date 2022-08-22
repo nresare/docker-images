@@ -15,11 +15,11 @@ RUN if [ "$TARGETARCH" = "arm64" ]; then \
  else \
  cp $HOME/go/bin/bazelisk /bazel-binary; \
  fi
-RUN git clone https://github.com/nresare/nryaml
-RUN yum -y install java-1.8.0-openjdk-headless
-RUN (cd nryaml && /bazel-binary test //...)
+#RUN git clone https://github.com/nresare/nryaml
+#RUN yum -y install java-1.8.0-openjdk-headless
+#RUN (cd nryaml && /bazel-binary test //...)
 
 FROM amazonlinux:2.0.20220606.1
 RUN yum -y install git gcc-c++ java-1.8.0-openjdk-headless
 COPY --from=builder /bazel-binary /usr/bin/bazel
-COPY --from=builder /root/.cache/bazel/_bazel_root/cache /root/.cache/bazel/_bazel_root/cache
+#COPY --from=builder /root/.cache/bazel/_bazel_root/cache /root/.cache/bazel/_bazel_root/cache
